@@ -1,58 +1,55 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "./components/AppBar";
+import React, { useState, setState, useRef } from "react";
 
 import Editor from "./components/EditorJS";
 
-import Card from "@material-ui/core/Card";
+import EditorParser from "./components/EditorJSParse";
 
-import CardActions from "@material-ui/core/CardActions";
-
-import Button from "@material-ui/core/Button";
-
-const styles = theme => ({
-  root: {
-    display: "flex"
+const styles = {
+  constainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center"
+    // weigth: "100vw",
+    // height: "70vh",
+    // margin: 100,
+    // overflow: "auto"
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+  item: {
+    flexGrow: 0,
     height: "100vh",
-    overflow: "auto"
+    width: "50vw"
   }
-});
+};
 
-class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  // const { classes } = this.props;
+const App = () => {
+  const [blocks, setBlocks] = useState([]);
 
-  handlerSave = output => {
-    console.log(output);
+  const editorRef = useRef();
+
+  const handlerSave = async () => {
+    let output = await editorRef.current.save();
+
+    console.log(output.blocks);
+    setBlocks(output.blocks);
   };
 
-  render() {
-    return (
-      <>
-        <CssBaseline />
-        <AppBar />
-        <main>
-          <h1>Hwllo wolrd</h1>
-          <Card>
-            <Editor />
-            <CardActions>
-              {/* <Button size="small" color="primary">
-                Save
-              </Button> */}
-            </CardActions>
-          </Card>
-        </main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <div style={styles.constainer}>
+        <button onClick={handlerSave}>Save</button>
+      </div>
+      <div style={styles.constainer}>
+        <Editor ref={editorRef} style={styles.item} />
 
-export default withStyles(styles)(App);
+        <EditorParser
+          blocks={blocks}
+          style={{ ...styles.item, backgroundColor: "lightGray", padding: 10 }}
+        />
+      </div>
+    </>
+  );
+};
+
+export default App;
