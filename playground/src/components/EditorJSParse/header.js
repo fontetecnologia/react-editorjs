@@ -6,7 +6,9 @@ const Header = props => {
 
   const Tag = `h${level}`;
 
-  return <Tag dangerouslySetInnerHTML={renderText(text)} />;
+  return (
+    <Tag className="ce-header" dangerouslySetInnerHTML={renderText(text)} />
+  );
 };
 
 export default Header;

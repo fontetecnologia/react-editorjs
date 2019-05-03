@@ -8,28 +8,26 @@ const CheckList = props => {
 
   function renderCheckList() {
     const listItems = [];
-    items.forEach((data, index) =>
+    items.forEach((data, index) => {
+      let classCheck = `cdx-checklist__item ${
+        data.checked ? "cdx-checklist__item--checked" : ""
+      }`;
+
       listItems.push(
-        <div key={index}>
-          <input
-            type="checkbox"
-            name={`checkbox_${index}`}
-            id={`checkbox_${index}`}
-            defaultChecked={data.checked}
-            readOnly
-          />
-          <label
-            htmlFor={`checkbox_${index}`}
+        <div className={classCheck} key={index}>
+          <span className="cdx-checklist__item-checkbox" />
+          <div
+            className="cdx-checklist__item-text"
             dangerouslySetInnerHTML={renderText(data.text)}
           />
         </div>
-      )
-    );
+      );
+    });
 
     return listItems;
   }
 
-  return renderCheckList();
+  return <div className="cdx-checklist">{renderCheckList()}</div>;
 };
 
 export default CheckList;

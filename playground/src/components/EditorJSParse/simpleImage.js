@@ -2,74 +2,30 @@ import React from "react";
 
 import { renderText } from "./utils";
 
-const styles = {
-  imageDefault: {
-    maxWidth: "100%",
-    verticalAlign: "bottom"
-  },
-  imageWithBackground: {
-    display: "block",
-    maxWidth: "60%",
-    margin: "0 auto"
-  },
-  imageStretched: {
-    maxWidth: "none",
-    width: "100%"
-  },
-  containerWithBorder: {
-    border: "1px solid #e8e8eb",
-    padding: "1px"
-  },
-  containerWithBackground: {
-    background: "#eff2f5",
-    padding: "10px"
-  }
-};
-
 const SimpleImage = props => {
-  const { caption, stretched, url, withBackground, withBorder } = props.data;
+  const { caption, url, stretched, withBackground, withBorder } = props.data;
 
-  function getImageStyle() {
-    let imageStyle = styles.imageDefault;
+  let classNames = "cdx-simple-image__picture";
 
-    if (withBackground) {
-      imageStyle = Object.assign(imageStyle, styles.imageWithBackground);
-    }
+  if (withBorder) classNames += " cdx-simple-image__picture--with-border";
 
-    if (stretched) {
-      imageStyle = Object.assign(imageStyle, styles.imageStretched);
-    }
+  if (withBackground)
+    classNames += " cdx-simple-image__picture--with-background";
 
-    return imageStyle;
-  }
-
-  function getContainerStyle() {
-    let containerStyle = {};
-
-    if (withBorder) {
-      containerStyle = Object.assign(
-        containerStyle,
-        styles.containerWithBorder
-      );
-    }
-
-    if (withBackground) {
-      containerStyle = Object.assign(
-        containerStyle,
-        styles.containerWithBackground
-      );
-    }
-
-    return containerStyle;
-  }
+  if (stretched) classNames += " cdx-simple-image__picture--stretched";
 
   function renderImage() {
     return (
-      <div style={getContainerStyle()}>
-        <img src={url} alt={caption} style={getImageStyle()} />
-        {caption.length > 0 && (
-          <p dangerouslySetInnerHTML={renderText(caption)} />
-        )}
+      <div className="cdx-simple-image">
+        <div className={classNames}>
+          <img src={url} alt={caption} />
+          {caption.length > 0 && (
+            <div
+              className="ce-paragraph"
+              dangerouslySetInnerHTML={renderText(caption)}
+            />
+          )}
+        </div>
       </div>
     );
   }

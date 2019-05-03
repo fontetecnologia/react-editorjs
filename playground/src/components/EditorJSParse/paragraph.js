@@ -4,7 +4,9 @@ import { renderText } from "./utils";
 const Paragraph = props => {
   const text = props.data.text;
 
-  return <p dangerouslySetInnerHTML={renderText(text)} />;
+  return (
+    <div className="ce-paragraph" dangerouslySetInnerHTML={renderText(text)} />
+  );
 };
 
 export default Paragraph;

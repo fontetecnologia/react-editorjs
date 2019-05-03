@@ -6,15 +6,21 @@ const List = props => {
 
   const Tag = style === "unordered" ? "ul" : "ol";
 
+  const className = `cdx-list cdx-list--${style}`;
+
   function renderList() {
     const listItems = [];
     items.forEach((text, index) =>
       listItems.push(
-        <li key={index} dangerouslySetInnerHTML={renderText(text)} />
+        <li
+          className="cdx-list__item"
+          key={index}
+          dangerouslySetInnerHTML={renderText(text)}
+        />
       )
     );
 
-    return <Tag>{listItems}</Tag>;
+    return <Tag className={className}>{listItems}</Tag>;
   }
 
   return renderList();

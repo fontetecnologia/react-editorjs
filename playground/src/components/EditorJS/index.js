@@ -79,6 +79,8 @@ const editor = new _EditorJS({
 });
 
 const EditorJS = forwardRef((props, ref) => {
+  // const [count, setCount] = React.useState(0);
+
   useImperativeHandle(ref, () => ({
     async save() {
       try {
@@ -94,6 +96,8 @@ const EditorJS = forwardRef((props, ref) => {
   return (
     <>
       <div id="editorjs" style={props.style} />
+      {/* <div>{count}</div>
+      <button onClick={() => setCount(count + 1)}>+1</button> */}
     </>
   );
 });

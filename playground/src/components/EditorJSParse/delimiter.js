@@ -1,6 +1,6 @@
 import React from "react";
 
-const Delimeter = props => {
+const Delimeter = () => {
   return <div className={"ce-delimiter cdx-block"} />;
 };
 

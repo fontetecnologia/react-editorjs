@@ -37,7 +37,11 @@ const EditorJSParse = props => {
     return list;
   }
 
-  return <div style={style}>{renderBlocks()}</div>;
+  return (
+    <div style={style}>
+      <div className="ce-block__content">{renderBlocks()}</div>
+    </div>
+  );
 };
 
 export default EditorJSParse;

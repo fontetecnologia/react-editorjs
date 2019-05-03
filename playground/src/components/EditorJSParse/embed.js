@@ -2,23 +2,30 @@ import React from "react";
 import { renderText } from "./utils";
 
 const Embed = props => {
-  const { caption, embed, height, width } = props.data;
+  const { caption, embed, source, height, width } = props.data;
 
   function renderIFrame() {
     return (
-      <div>
-        <iframe
-          id={Date.now()}
-          key={Date.now()}
-          title={Date.now()}
-          width={width}
-          height={height}
-          src={embed}
-          frameborder="0"
-        />
+      <div
+        style={{
+          margin: "0 auto"
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <iframe
+            title={source}
+            width={width}
+            height={height}
+            src={embed}
+            frameBorder="0"
+          />
+        </div>
 
         {caption.length > 0 && (
-          <p dangerouslySetInnerHTML={renderText(caption)} />
+          <div
+            className="ce-paragraph"
+            dangerouslySetInnerHTML={renderText(caption)}
+          />
         )}
       </div>
     );
