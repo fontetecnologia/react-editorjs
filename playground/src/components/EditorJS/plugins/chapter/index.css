@@ -1,0 +1,18 @@
+/**
+ * Plugin styles
+ */
+ .ce-chapter {
+    padding: 1em 0;
+    margin: 0;
+    margin-bottom: -0.9em;
+    line-height: 1.5em;
+    outline: none;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .ce-chapter p,
+  .ce-chapter div{
+    padding: 0 !important;
+    margin: 0 !important;
+  }

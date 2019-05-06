@@ -6,6 +6,7 @@ import EditorParser from "./components/EditorJSParse";
 
 const styles = {
   constainer: {
+    padding: '50px',
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
