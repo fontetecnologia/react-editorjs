@@ -147,8 +147,7 @@ export default class Chapter {
    */
   save(toolsContent) {
     return {
-      text: toolsContent.innerHTML,
-      level: this.currentLevel.number
+      text: toolsContent.innerHTML
     };
   }
 
@@ -173,36 +172,6 @@ export default class Chapter {
    */
   set data(data) {
     this._data = this.normalizeData(data);
-
-    /**
-     * If level is set and block in DOM
-     * then replace it to a new block
-     */
-    if (data.level !== undefined && this._element.parentNode) {
-      /**
-       * Create a new tag
-       * @type {HTMLHeadingElement}
-       */
-      let newChapter = this.getTag();
-
-      /**
-       * Save Block's content
-       */
-      newChapter.innerHTML = this._element.innerHTML;
-
-      /**
-       * Replace blocks
-       */
-      this._element.parentNode.replaceChild(newChapter, this._element);
-
-      /**
-       * Save new block to private variable
-       * @type {HTMLHeadingElement}
-       * @private
-       */
-      this._element = newChapter;
-    }
-
     /**
      * If data.text was passed then update block's content
      */
